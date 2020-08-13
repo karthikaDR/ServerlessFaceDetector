@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+	    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Face Recognition</title> 
+</head>
+<style>
+
+ body{
+ 	font-family: Comic Sans MS;
+ }
+
+
+   input[type=button] {
+     
+     font-weight: 	bold; 	
+     font-family: 	Comic Sans MS;
+     border: 5px;
+     padding: 8px 15px;
+     text-decoration: none;
+     margin: 4px 2px;
+     cursor: pointer;
+     background-image: linear-gradient(to bottom, #EC9F05, #FF4E00);
+     border-color: black;
+     color: white;
+     border-radius: 6px;
+   }
+      
+   input[type=text] {
+	  width: 35%;
+	  box-sizing: border-box;
+	  border: 1px solid #555;
+	  border-radius: 4px;
+	  outline: none;
+	}
+
+	input[type=text]:focus {
+	  background-color: lightblue;
+	  border: 3px solid #555;
+	}
+
+   input[type=text1] {
+	  width: 20%;
+	  box-sizing: border-box;
+	  border: 1px solid #555;
+	  border-radius: 4px;
+	  outline: none;
+	}
+
+	input[type=text1]:focus {
+	  background-color: lightblue;
+	  border: 3px solid #555;
+	}
+    
+    select{
+      width: 8%;
+	  box-sizing: border-box;
+	  border: 1px solid #555;
+	  border-radius: 4px;
+	  outline: none;
+
+    }
+
+
+   div.main{
+   	width: 1360px;
+   	height: 775px;
+	padding: 	50px;
+	background-color: #333;
+	border-color: 	black;
+	border-style: 	solid;
+   }
+
+      div.container1{
+   	width: 1350px;
+   	height: 370px;
+	padding: 	10px;
+	background-color: #F8F8F8;
+	float:top;
+	border: 1px solid
+   }
+
+      div.container2{
+   	width: 1350px;
+   	height: 240px;
+	padding: 	10px;
+	background-color:#F8F8F8 ;
+	float:bottom;
+	border: 1px solid
+   }
+
+   div.entryfield1{
+   	width: 800px;
+   	height: 320px;
+   	float:left;
+   	padding: 5px;
+   }
+
+   div.entryfield2{
+   	width: 480px;
+   	height: 320px;
+   	float:right;
+   	padding: 5px;
+   }
+
+   div.camera{
+
+	width: 280px;
+	height: 220px;
+	float: top;
+   }
+
+   	div.input{
+
+	 width: 320px;
+	 height:30px;
+	 float: bottom;
+	}
+
+	div.Click{
+   	 float: left;
+    }
+
+    div.Delete{
+   	 float: right;
+    }
+
+    div.notification{
+     float: left;
+    }
+
+    div.buttons{
+     float: right;
+    }
+
+    div.menu1{
+    	float:top;
+    }
+
+    div.main{
+    	float:bottom;
+    }
+
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: orange;
+}
+
+.active {
+  background-color: orange;
+}
+    </style>
+<body>
+    <div>
+    <div class = "menu1">
+      <ul>
+        <li><a href="https://hostingbucket2.s3.us-east-2.amazonaws.com/homepage.html">Home</a></li>
+        <li><a class = "active" href="https://hostingbucket2.s3.us-east-2.amazonaws.com/Registration.html">Register</a></li>
+        <li><a href="https://hostingbucket2.s3.us-east-2.amazonaws.com/update.html">Update Profile</a></li>
+        <li><a href="https://hostingbucket2.s3.us-east-2.amazonaws.com/facecomparison.html">Checkin/Checkout</a></li>
+      </ul>
+    </div>
+    <br>
+	<div class="main">
+		 <h2 style="text-align:center;color:white;font-family:Comic Sans MS;font-weight: bold"> Registration Form</h2>  
+
+	<div class = "container1">
+		<div class = "entryfield1">
+				<h3> Parent/Guardian Information </h3> 
+                <form id = "mainform" method = "POST" class = "mainform" enctype="multipart/form-data>
+                      <label for="fname">First name</label>
+                        <br>
+                      <input type="text" id="fname" name="fname">
+                      <br>
+                      <label for="lname">Last name</label>
+                      <br>
+                      <input type="text" id="lname" name="lname"><br> 
+                      <label for="Relation">Relationship to Student</label><br>
+
+                      <select id="relationship" style = "width = 10%;"name="relationship">
+                           <option value="Mother">Mother</option>
+                           <option value="Father">Father</option>
+                           <option value="Guardian">Guardian</option>
+                      </select><br>
+
+
+
+                      <label for="address">Address</label><br>
+
+                      <input type="text" id="address" name="address"><br>
+                      <label for="email">Email</label><br>
+
+                      <input type="text" id="email" name="email"><br>
+
+                      <label for="phone">Mobile</label><br>
+
+                      <input type="text" id="phoneno" name="phoneno">
+                      <p style="color: 	blue;">Note: Please fill all the fields, click your photo and then submit</p><br>
+		</div>
+
+
+       <div class="entryfield2">
+       	    <br>
+       	    <br>
+       	    <br>
+
+       	    <div class="camera" id="my_camera">   
+
+            </div>
+            <br>
+
+           <div class="input" id="input">   
+
+    	       <div class="Click">
+    	
+    		         <input type=button value="Click" style="font-size: 20px; margin:auto; font-weight: bold;" onClick="take_snapshot()">
+              </div>
+              <div class = "Delete">
+                    <input type=button value="Delete" style="font-size: 20px; margin:auto; font-weight: bold;" onClick="takepicagain()">  
+     	     </div>
+    
+            </div>
+
+       </div>
+
+	</div>
+
+	<br>
+
+    <div class = "container2">
+    	<h3>Student Information </h3>
+        <label for="student"> First name</label><br>
+
+        <input type="text1" id="fname_child" required><br>
+        <label for="student"> Last name</label><br>
+
+        <input type="text1" id="lname_child" required><br>
+
+       <label for="student"> Date Of Birth(MM/DD/YYYY) </label><br>
+       
+
+       <select id="month" name="month">
+            <option>01</option>
+            <option>02</option>
+            <option>03</option>
+            <option>04</option>
+            <option>05</option>
+            <option>06</option>
+            <option>07</option>
+            <option>08</option>
+            <option>09</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+        </select>&nbsp &nbsp
+
+        <select id="date" name="date">
+            <option>01</option>
+            <option>02</option>
+            <option>03</option>
+            <option>04</option>
+            <option>05</option>
+            <option>06</option>
+            <option>07</option>
+            <option>08</option>
+            <option>09</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option> 
+        </select> &nbsp &nbsp
+        <select id="year" name="year">
+            <option>2001</option>
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+            <option>2006</option>
+            <option>2007</option>
+            <option>2008</option>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+        </select> <br>
+       <label for="Gender1">Gender</label><br>
+       <select id="gender" name="gender_name">
+           <option value="Male">Male</option>
+           <option value="Female">Female</option>
+       </select><br>
+
+
+      <input type="image" class = "pic" id="clickedimage"hidden>
+      
+    </div>
+    <br>
+     
+    <div>
+    	<div class="notification">
+    		<h2 style="color:white;" id="profileSaved"></h2>
+    	</div>
+    	<div class="buttons">
+    		<input type=button  id="saveprofile" style="font-size: 18px;"  value="Submit" onClick="profile()">
+    	</div>
+    </div>
+      
+ 
+      
+</div>
+</div>
+
+
+ 	<!-- First, include the Webcam.js JavaScript Library -->
+	<script type="text/javascript" src="webcam.min.js"></script>
+	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<!-- Configure a few settings and attach camera -->
+	<script language="JavaScript">
+		Webcam.set({
+			width: 320,
+			height: 240,
+			dest_width: 320,
+			dest_height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( '#my_camera' );
+	</script>
+ 
+ 
+ <!-- Code to handle taking the snapshot and displaying it locally -->
+	<script language="JavaScript">
+		function take_snapshot() {
+			// take snapshot and get image data
+			console.log("Camera");
+			Webcam.snap( function(data_uri) {
+			// display results in page
+				document.getElementById('my_camera').innerHTML = '<img src="'+data_uri+'"/>';
+				console.log(data_uri);	
+				console.log(my_camera);
+			    document.getElementById('clickedimage').innerHTML	= data_uri;
+			    
+			    alert(one);
+			    console.log(clickedimage);
+					//clearCamera();
+			} );
+		} // end of take snapshot
+		
+		
+	
+		function clearCamera(){
+		console.log("Clear Camera");
+		document.getElementById(my_camera.innerHTML= "");
+		} 
+
+
+        function takepicagain(){
+				Webcam.set({
+			width: 320,
+			height: 240,
+			dest_width: 320,
+			dest_height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( '#my_camera' );
+
+	   }
+  
+
+  //add your api here below
+				//add your api here below
+       
+//AJAX GET REQUEST
+       function profile(){
+
+
+       	 var API_ENDPOINT = "https://k2bal9clb5.execute-api.us-east-2.amazonaws.com/testing/test";
+         var one = document.getElementById('clickedimage').innerHTML.substr(23);
+         var genoption = document.getElementById('gender');
+         var gender= genoption.options[genoption.selectedIndex].text;
+         var relationoption = document.getElementById('relationship');
+         var relationship= relationoption.options[relationoption.selectedIndex].text;
+         var mon = document.getElementById('month');
+         var month = mon.options[mon.selectedIndex].text;
+         var da = document.getElementById('date');
+         var date = da.options[da.selectedIndex].text;
+         var ye = document.getElementById('year');
+         var year = ye.options[ye.selectedIndex].text;
+         var dob = month + '/' + date + '/' + year;
+         console.log($('.pic').innerHTML);
+       	 var inputData = {"ParentFirstName":$('#fname').val(),
+       	                  "ParentLastName":$('#lname').val(),
+       	                  "Relation": relationship,
+       	                  "EmailID":$('#email').val(),
+       	                  "Address":$('#address').val(),
+       	                  "Phoneno":$('#phoneno').val(),
+       	                  "Image": one,
+       	                  "StudentFirstName":$('#fname_child').val(),
+       	                  "StudentLastName":$('#lname_child').val(),
+       	                  "StudentDOB":dob,
+       	                  "StudentGender":gender};
+
+       	 console.log(inputData);
+       	 
+
+         $.ajax({
+             url: API_ENDPOINT,
+             type: 'POST',		
+             data:  JSON.stringify(inputData),
+             crossDomain:true,
+             contentType: 'application/json',
+             cache: false,
+             cors: true,
+             datatype: 'jsonp',
+             success: function (response) {
+              document.getElementById("profileSaved").innerHTML = "Profile Saved!";
+               },
+             error: function () {
+              alert("error");
+         }
+       });
+     }
+   
+  
+	</script>
+</body>
+</html>
