@@ -1,0 +1,286 @@
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Face Recognition</title>      
+</head>
+
+<style>
+ body{
+  font-family:  Comic Sans MS;
+ }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: orange;
+}
+.active {
+  background-color: orange;
+}
+
+
+
+ input[type=button] {
+     font-weight:   bold;   
+     font-family:   Comic Sans MS;
+     border: 5px;
+     color: white;
+     padding: 8px 15px;
+     text-decoration: none;
+     margin: 4px 2px;
+     cursor: pointer;
+     background-image: linear-gradient(to bottom, #EC9F05, #FF4E00);
+     color: white;
+     border-radius: 6px;
+ }
+ div.main{
+  float:bottom;
+    width: 1260px;
+    height: 590px;
+  padding:  100px;
+  background-color: #333;
+  border-color:   black;
+  border-style:   solid;
+  }
+
+
+ div.container1{
+    width: 1225px;
+    height: 370px;
+  padding:  10px;
+  background-color: #F8F8F8;
+  float:left;
+  border: 1px solid
+   }
+
+ 
+  input[type=text] {
+    width: 32%;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  
+    div.input{
+
+   width: 320px;
+   height:30px;
+   float: bottom;
+  }
+
+  div.Click{
+     float: left;
+    }
+
+   
+    div.buttons{
+     float: left;
+    }
+
+    div.up{
+      float: up;
+      width :1250px;
+      height: 450;
+
+    }
+    
+    div.bottom{
+     float: bottom;
+     padding:   30px;
+    }
+
+    div.notification{
+     float: left;
+     width: 600px;
+     height:80px; 
+    }
+
+    div.buttons{
+     float: left;
+    }
+
+    div.menu1{
+      float:top;
+    }
+
+    ul.menubar a {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+</style>
+
+
+<body>
+
+ <div>
+    <div class = "menu1">
+      <ul class="menubar">
+        <li><a href="https://hostingbucket3.s3.us-east-2.amazonaws.com/homepage.html">Home</a></li>
+        <li><a href="https://hostingbucket3.s3.us-east-2.amazonaws.com/Registration.html">Register</a></li>
+        <li><a class = "active" href="https://hostingbucket3.s3.us-east-2.amazonaws.com/StudentProfile.html">StudentProfile</a></li>
+      </ul>
+    </div>
+    <br>
+
+
+  <div class = "main">
+
+   <div class = "up">
+             <h1 style="color:white;text-align: center; "> Student Profile</h1>
+             <br>
+             <p id="error" style="color:red;font-size: 18px;"></p>
+
+    <div class = "container1">
+
+      <h3 style=" color:blue;"> Student Information</h3>
+
+      <br>
+
+        <label for="student"> <b> First name </b></label><br>
+
+        <input type="text" id="fname_child" required><br><br>
+
+        <label for="student"> <b> Last name </b></label><br>
+
+        <input type="text" id="lname_child" required><br><br>
+			
+		<label for="student"><b> Classroom Number </b> </label><br>
+       
+		<select id="classNumber" name="classNumber" required>
+            <option>None</option>
+			      <option>01</option>
+            <option>02</option>
+            <option>03</option>
+            <option>04</option>
+            <option>05</option>
+            <option>06</option>
+            <option>07</option>
+            <option>08</option>
+            <option>09</option>
+			<option>10</option>
+        </select>&nbsp &nbsp
+		<br><br>
+					
+		<div class="buttons">
+        <input type=button  id="saveprofile" style="font-size: 18px;"  value="Submit" onClick="profile()">
+        </div>
+
+    </div>
+
+    
+        </div>      
+        <div class="notification">
+        <h2 style="color:Blue;background-color: #F8F8F8;" id="profileSaved"></h2>
+        </div>
+   
+        
+        </div>
+    </div>
+
+
+
+
+</body>
+  <script type="text/javascript" src="https://hostingbucket3.s3.us-east-2.amazonaws.com/webcam.min.js"></script>
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  
+ 
+ 
+ <
+  <script language="JavaScript">
+    
+       //AJAX GET REQUEST
+       function profile(){
+           
+           var flag = false;
+           //Validation 
+		   
+		   if(flag == false){
+             if(($('#fname_child').val() == '')&&($('#lname_child').val() == '')&&($('#relationship').val() == 'None')){
+                document.getElementById("error").innerHTML = "No information entered. Please enter all information and then submit.";
+                flag = true;
+                return false;
+
+             }
+			 
+           if($('#fname_child').val() == ''){
+                document.getElementById("error").innerHTML = "Please enter Child's first name.";
+                flag = true;
+                return false;
+
+           }
+		   
+		   if($('#lname_child').val() == ''){
+                document.getElementById("error").innerHTML = "Please enter Child's last name.";
+                flag = true;
+                return false;
+
+           }
+		   
+		   if($('#classNumber').val() == 'None'){
+                document.getElementById("error").innerHTML = "Please enter classroom number.";
+                flag = true;
+                return false;
+
+           }
+		   
+		              
+           
+           }
+ 
+
+           //Send Ajax request if all validations succeed.
+
+          var API_ENDPOINT = 'https://ci3i7k0u1l.execute-api.us-east-2.amazonaws.com/staging/studentprofile';
+          var class = document.getElementById('ClassNumber');
+          var classno= class.options[class.selectedIndex].text;
+          var inputData = {"FirstName":$('#fname_child').val(),
+                            "LastName":$('#lname_child').val(),
+                            "ClassNumber":classno};
+
+          $.ajax({
+               url: API_ENDPOINT,
+               type: 'POST',    
+               data:  JSON.stringify(inputData),
+               crossDomain:true,
+               contentType: 'application/json',
+               cache: false,
+               cors: true,
+               success: function (response) {
+                 console.log(response);
+                 },
+               error: function () {
+                alert("error");
+           }
+         });
+     }
+
+  </script>
+ </html>
