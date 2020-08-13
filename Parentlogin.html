@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+
+ body{
+  font-family:  Comic Sans MS;
+ }
+
+input[type=text]:focus {
+    background-color: #FFF8DC;
+    border: 3px solid #555;
+  }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: orange;
+}
+
+.active {
+  background-color: orange;
+}
+
+div.main1{
+  width : 550px;
+  height: 660px;
+  float:left;;
+}
+div.sub{
+  width : 450px;
+  height: 420px;
+  padding:30px;
+  background-color: black;
+}
+
+div.main2{
+  width : 800px;
+  height: 660px;
+  float:right;
+}
+
+div.menu1{
+  float: top;
+  height: 75px;
+}
+
+div.main{
+  float: bottom;
+  background-color:   #333;
+  border-style: solid;
+  height:690px;
+  padding: 50px;
+}
+.mainform{
+  color :white;
+  font-size : 18px;
+}
+
+input[type=text] {
+    width: 55%;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    outline: none;
+}
+
+input[type=button] {
+     
+     font-weight:   bold;   
+     font-family:   Comic Sans MS;
+     border: 5px;
+     padding: 8px 15px;
+     text-decoration: none;
+     margin: 4px 2px;
+     cursor: pointer;
+     background-image: linear-gradient(to bottom, #EC9F05, #FF4E00);
+     border-color: black;
+     color: white;
+     border-radius: 6px;
+   }
+
+</style>
+</head>
+<body>
+
+
+<div class ="menu">
+
+  <div class = "menu1">
+      <ul>
+        <li><a class = "active" href="https://parentfacenprofile.s3.us-east-2.amazonaws.com/homepage.html">Log In</a></li>
+      </ul>
+  </div>
+
+
+ <div class = "main">
+       <div class = "main1">
+       <br>
+       <br>
+       <div class="sub">
+            <form id = "mainform" method = "POST" class = "mainform" enctype="multipart/form-data>multipart
+                      <br>
+                      <br>
+                      <br> <h3 style="color:white;"> Please login  using your Sign in details</h3z>
+                      <br>
+                      <br>
+                      <br>
+                      <label for="Id" >EmailID</label>
+                      <br>
+                      <input type="text" id="Id" name="Id" required>
+                      <br> <br> <br>  
+                      <label for="password">Password</label>
+                      <br>
+                      <input type="password" id="password" name="password" required><br> 
+                      <br>
+                      <br>
+                      <br>
+                      <input type=button value="Sign In" style="font-size: 20px; margin:auto; font-weight: bold;" onClick="profile()"> 
+            </form>
+            <br>
+            <h4 style="color:red;background-color: white;" id="profileSaved"></h4>
+       </div>
+       </div>
+       <div class = "main2">
+        <br>
+        <br>
+       <img  alt="" src="homepic.jpg" />
+      </div>
+ </div>
+</div>
+
+
+<div id="content">        
+  <div class="notification">
+        
+        </div>
+</div>
+
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script language="JavaScript">
+   // $(document).ready(function() {
+     // $('a').click(function(e) {
+       // e.preventDefault();
+        //$("#content").load($(this).attr('href'));
+      //});
+    //});
+    function profile(){
+         
+        var flag = false;
+         //Validation checks
+
+       // alert('Please enter your identification number');
+
+         //First Name check
+        if($('#Id').val() == '')
+        {
+         alert('Please enter your identification number');
+         flag = true;
+         document.getElementById('IdentificationNumber').focus();
+        }
+        
+
+       
+
+         //Last Name check
+        if(flag == false){
+          if($('#password').val() == '')
+          {
+            alert('Please enter your Password');
+            flag = true
+            document.getElementById('password').focus();
+           }
+        }
+
+        var API_ENDPOINT = 'https://m7cswab7g6.execute-api.us-east-2.amazonaws.com/staging/checkdbidentity';
+        var inputData = {"EmailID":$('#Id').val(),
+                          "Password":$('#password').val()};
+
+        $.ajax({
+             url: API_ENDPOINT,
+             type: 'POST',    
+             data:  JSON.stringify(inputData),
+             crossDomain:true,
+             contentType: 'application/json',
+             cache: false,
+             cors: true,
+             success: function (response) {
+                   console.log(response);
+                   if(response == 'admin'){
+                     location.href = 'https://parentfacenprofile.s3.us-east-2.amazonaws.com/Registration.html';
+                    }
+                   else {
+                    if(response == 'user'){
+                     location.href = 'https://parentfacenprofile.s3.us-east-2.amazonaws.com/entryform.html';
+                    }
+                    else{
+                     document.getElementById("profileSaved").innerHTML = response;
+                   }
+                  }
+                   
+                  //console.log(data);                  
+                 //if(data == " "){
+                   
+                      
+                  //}else{
+
+                    //document.getElementById("profileSaved").innerHTML = data;
+                  //}
+              //});
+               },
+             error: function () {
+              alert("error");
+         }
+       });
+}
+</script>
+</html>
