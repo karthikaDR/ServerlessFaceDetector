@@ -1,0 +1,380 @@
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Face Recognition</title>      
+</head>
+
+<style>
+ body{
+ 	font-family: 	Comic Sans MS;
+ }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: grey;
+}
+.active {
+  background-color: orange;
+}
+
+
+
+ input[type=button] {
+     font-weight: 	bold; 	
+     font-family: 	Comic Sans MS;
+     border: 5px;
+     color: white;
+     padding: 8px 15px;
+     text-decoration: none;
+     margin: 4px 2px;
+     cursor: pointer;
+     background-image: linear-gradient(to bottom, #EC9F05, #FF4E00);
+     color: white;
+     border-radius: 6px;
+ }
+
+ input[type=text] {
+	  width: 20%;
+	  box-sizing: border-box;
+	  border: 1px solid #555;
+	  border-radius: 4px;
+	  outline: none;
+	}
+
+ div.main{
+ 	float:bottom;
+   	width: 1260px;
+   	height: 590px;
+	padding: 	100px;
+	background-color: #333;
+	border-color: 	black;
+	border-style: 	solid;
+  }
+
+
+ div.container1{
+   	width: 850px;
+   	height: 370px;
+	padding: 	10px;
+	background-color: #F8F8F8;
+	float:left;
+	border: 1px solid
+   }
+
+  div.container2{
+   	width: 330px;
+   	height: 370px;
+	padding: 	10px;
+	background-color: #F8F8F8;
+	float:right;
+	border: 1px solid
+   }
+
+   select{
+      width: 12%;
+	  box-sizing: border-box;
+	  border: 1px solid #555;
+	  border-radius: 4px;
+	  outline: none;
+
+    }
+
+   div.camera{
+
+	width: 280px;
+	height: 220px;
+	float: top;
+   }
+
+   	div.input{
+
+	 width: 320px;
+	 height:30px;
+	 float: bottom;
+	}
+
+	div.Click{
+   	 float: left;
+    }
+
+    div.Delete{
+   	 float: right;
+    }
+
+    div.buttons{
+     float: right;
+    }
+
+    div.up{
+    	float: up;
+    	width :1250px;
+    	height: 450;
+
+    }
+    
+    div.bottom{
+     float: bottom;
+     padding: 	30px;
+    }
+
+    div.notification{
+     float: left;
+     width: 600px;
+     height:80px; 
+    }
+
+    div.buttons{
+     float: right;
+    }
+
+    div.menu1{
+    	float:top;
+    }
+    ul.menubar a {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+</style>
+
+
+<body>
+
+ <div>
+    <div class = "menu1">
+      <ul class="menubar">
+        <li><a class = "active" href="https://parentfacenprofile.s3.us-east-2.amazonaws.com/entryform.html">Checkin/Checkout</a></li>
+        <li><a href="https://parentfacenprofile.s3.us-east-2.amazonaws.com/Feepayment.html">Fee Payment</a></li>
+        <li><a href="https://parentfacenprofile.s3.us-east-2.amazonaws.com/UpdateProfile.html">Update Profile</a></li>
+        <li><a href="https://parentfacenprofile.s3.us-east-2.amazonaws.com/Parentlogin.html">Sign Out</a></li>
+      </ul>
+    </div>
+    <br>
+
+
+	<div class = "main">
+
+        <div class = "up">
+		 <h1 style="color:white;text-align: center;	"> Check in / Check out Form</h1>
+		 		<br>
+		<h4 style="color:Blue;background-color: #F8F8F8;" id="message"></h4>
+
+		<div class = "container1">
+
+			<h4 style="	color:blue;"> Please fill in the required information, click your photo and then submit </h4>
+
+			<br><br>
+
+			<label for="Identification"> <b> Identification number </b></label><br>
+
+            <input type="text" id="idnumber" required><br>
+            <label for="fname"><b>Student Name</b></label><br>
+            <input type="text" id="fname"><br>
+
+            <label for="Relation"><b>Please select reason for entry</b></label><br>
+
+            <select id="entry" style = "width = 50%;"name="entry">
+                           <option value="Checkin">Checkin</option>
+                           <option value="Checkout">Checkout</option>
+            </select><br><br><br><br><br>
+
+            <label for="SubscribeMail"> <b> Please check the box if you wish to receive email copy. </b></label>
+            <input type="checkbox" id="emailnotification" name="emailnotification">
+
+
+		</div>
+
+		<div class = "container2">
+
+			<br>
+			<br>
+
+			<div class="camera" id="my_camera">   
+
+            </div>
+            <br>
+           <input type="image" class = "pic" id="clickedimage"hidden>
+           <div class="input" id="input">   
+
+    	       <div class="Click">
+    	
+    		         <input type=button value="Click"style="font-size: 20px; color: white;margin:auto;font-family:Comic Sans MS; font-weight: bold; background-color: #3366FF; " onClick="take_snapshot()">
+              </div>
+              <div class = "Delete">
+                    <input type=button value="Delete"style="font-size: 20px; color: white;margin:auto;font-family:Comic Sans MS; font-weight: bold; background-color: #3366FF; " onClick="takepicagain()">  
+     	     </div>
+    
+            </div>
+
+
+		</div>
+        </div>
+
+		  <div class = "bottom">
+		  			<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+          <br>
+    	  <div class="notification">
+    		<h4 style="color:Blue;background-color: #F8F8F8;" id="profileSaved"></h4>
+    		<p id="error" style="color:red;font-size: 18px;"></p>
+    	  </div>
+   
+    	  <div class="buttons">
+    		<input type=button  id="saveprofile" style="font-size: 18px;"  value="Submit" onClick="profile()">
+    	  </div>
+        </div>
+	</div>
+</div>
+
+
+
+</body>
+	<script type="text/javascript" src="https://parentfacenprofile.s3.us-east-2.amazonaws.com/webcam.min.js"></script>
+	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<!-- Configure a few settings and attach camera -->
+	<script language="JavaScript">
+		Webcam.set({
+			width: 320,
+			height: 240,
+			dest_width: 320,
+			dest_height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( '#my_camera' );
+	</script>
+ 
+ 
+ <!-- Code to handle taking the snapshot and displaying it locally -->
+	<script language="JavaScript">
+
+
+		function take_snapshot() {
+			// take snapshot and get image data
+			console.log("Camera");
+			Webcam.snap( function(data_uri) {
+			// display results in page
+				document.getElementById('my_camera').innerHTML = '<img src="'+data_uri+'"/>';
+				console.log(data_uri);	
+				console.log(my_camera);
+			    document.getElementById('clickedimage').innerHTML	= data_uri;
+			    
+			    alert(one);
+			    console.log(clickedimage);
+					//clearCamera();
+			} );
+		} // end of take snapshot
+		
+		
+	
+		function clearCamera(){
+		console.log("Clear Camera");
+		document.getElementById(my_camera.innerHTML= "");
+		} 
+
+
+        function takepicagain(){
+				Webcam.set({
+			width: 320,
+			height: 240,
+			dest_width: 320,
+			dest_height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( '#my_camera' );
+
+	   }
+
+
+	   //AJAX GET REQUEST
+       function profile(){
+
+       	if($('#idnumber').val() == ''){
+       		    document.getElementById("error").innerHTML = "Please enter your Identification Number.";
+
+                return false;
+
+       	}
+
+       	if(document.getElementById('clickedimage').innerHTML == ''){
+       		 document.getElementById("error").innerHTML = "Please click your photo and then submit.";
+       		 return false;
+
+       	}
+
+
+       	 var API_ENDPOINT = "https://0bwkoh4bw2.execute-api.us-east-2.amazonaws.com/staging/compare"
+       
+         var one = document.getElementById('clickedimage').innerHTML.substr(23);
+         console.log($('.pic').innerHTML);
+       	 var inputData = {"IdentificationNumber":$('#idnumber').val()};
+       	 var genoption = document.getElementById('entry');
+         var entry= genoption.options[genoption.selectedIndex].text;
+
+       	 console.log(entry);
+       	 console.log('emailnotification', document.getElementById("emailnotification").checked);
+       	 
+       	 if(document.getElementById("emailnotification").checked == true){
+       	 	Sendemail = 'X';
+       	 }
+       	 else{
+       	 	Sendemail = ' ';
+       	 }
+
+         $.ajax({
+             url: API_ENDPOINT,
+             type: 'POST',		
+             data:  JSON.stringify({"IdentificationNumber":$('#idnumber').val(), "Entry": entry,"Image": one, "SendEmail": Sendemail}),
+             contentType: 'application/json; charset=utf-8',
+
+             success: function (response){
+             	document.getElementById("profileSaved").innerHTML = response;
+
+             	
+          // $('#employeeProfile tr').slice(1).remove();
+          // jQuery.each(response, function(i,data) {  
+          //    console.log(data);  
+          //    document.getElementById("profileSaved").innerHTML = data; 
+          //    document.getElementById("error").innerHTML = '';     
+             
+          // });
+        },
+
+             error: function () {
+              alert("error");
+         }
+       });
+     }
+
+	</script>
+ </html>
