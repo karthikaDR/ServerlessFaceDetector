@@ -8,6 +8,13 @@ Below is the parent profile registration page that the school administration is 
 
 ![Alt text](https://github.com/karthikaDR/ServerlessFaceDetector/blob/master/registration%20page.JPG)
 Below is the parent login page along with the pick-up/drop-off entry details page and fee payment page.
+
+Login Page
 ![Alt text](https://github.com/karthikaDR/ServerlessFaceDetector/blob/master/ParentLogin.JPG)
+
+Checkin/out Page
+![Alt text](https://github.com/karthikaDR/ServerlessFaceDetector/blob/master/EntryForm.JPG)
+
+Fee Payment Page
 ![Alt text](https://github.com/karthikaDR/ServerlessFaceDetector/blob/master/FeePayment.JPG)
 
