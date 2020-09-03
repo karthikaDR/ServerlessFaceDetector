@@ -7,3 +7,6 @@ All the implementations were developed as microservices. The front end AJAX requ
 Below is the parent profile registration page that the school administration is responsible to fill in and submit to the database.
 
 ![Alt text](https://github.com/karthikaDR/ServerlessFaceDetector/blob/master/registration%20page.JPG)
+Below is the parent login page along with the pick-up/drop-off entry details page and fee payment page.
+![Alt text](https://github.com/karthikaDR/ServerlessFaceDetector/blob/master/parent%20login.JPG)
+
